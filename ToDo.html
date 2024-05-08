@@ -1,0 +1,125 @@
+<!--TO DO LIST-->
+<html>
+    <title> To Do List</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background: rgb(238,174,202);
+            background: radial-gradient(circle, rgba(238,174,202,1) 2%, rgba(165,224,227,0.44030112044817926) 43%, rgba(169,172,226,1) 80%, rgba(148,233,148,0.499124649859944) 100%);
+        }
+        h1{
+            color: rgb(94, 225, 71);
+            text-shadow: 3px 3px 4px black;
+            justify-content: center;
+            text-align: center;
+            margin-top: 10%;
+            font-style: italic;
+            font-weight: bold;
+            font-size: 70px;
+        }
+        div{
+            margin: auto;
+            width: 50%;
+            padding: 10px;
+            text-align: center;
+
+        }
+        #details{
+            border: 3px solid;
+            border-radius: 5px;
+            height: 25px;
+            width: 200px;
+            margin-bottom: 10px;
+        }
+        label{
+            font-weight: bold;
+            color: chocolate;
+            font-size:medium;
+        }
+        button{
+            color: white;
+            background-color: black;
+            width: 65px;
+            height: 25px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        button:hover{
+            background-color: chocolate;
+            transition: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        div ul{
+            padding: 5px;
+            list-style-type: none;
+            border: 5px;
+        }
+        div ul li{
+            color: red;
+            align-content: space-around;
+            border: 5px;
+            margin-left: 5px;
+            margin-bottom: 15px;
+            justify-items: auto;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            text-align: center;
+            font-size: 15px ;
+        }
+    
+        
+    </style>
+
+<body>
+    <h1>To Do List</h1>
+    <div id="container">
+        <label for="details">Add Today Details:</label>
+        <input type="text" id="details">
+        <button type="submit" id="btn" onclick="add()">ADD</button>
+        <ul id="listitem"></ul>
+    </div>
+    <script>
+        // select the required tag values to fetch inputs
+        var details = document.getElementById("details")
+        var btn = document.getElementById("btn")
+        var listitem = document.getElementById("listitem")
+    
+        // Function to create and add new Unorder List items to the div classin the HTML body
+        function add()
+
+        {   
+            // For this we need to create the new Element under UL tag
+            var newList = document.createElement("li") 
+            
+            // After creating the list add the input value and delete button for the Listitem
+            newList.innerHTML = details.value +"<button id='del' onclick='deletefunction(event)'>DELETE</button>"
+
+            // After adding the input value append the listitem LI to UnorderList
+            listitem.append(newList)
+
+            /* Now the List has been created. After this we need to append the UL list inside the HTML body.
+             For now we are going to add the uL in div class so we fetched the div 
+            element by id and append the created new UL to the div container 
+            var target = document.getElementById("container")
+            target.append(newList)*/
+
+            // Once the new list has been created the value in the input box should be emptied
+            details.value = ""
+        }
+
+        // If the work has been completed in the to do list we can remove the completed work
+        // by using the below function
+        function deletefunction(event)
+            {
+                event.target.parentElement.remove()
+            }
+
+        // Below eventlistener is used to stop the default function of the submit button 
+        btn.addEventListener("click",function(event){
+            event.preventDefault()
+        })
+
+    </script>
+</body>
+</html>
